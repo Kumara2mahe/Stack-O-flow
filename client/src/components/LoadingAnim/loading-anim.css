@@ -1,0 +1,25 @@
+.loading {
+    font-size: 1.7em;
+    font-weight: 400;
+    color: var(--slate-gray);
+}
+
+.loading .dot {
+    font-size: 1.25em;
+    animation: dot-hightlighter 0.6s infinite;
+    transition: animation 0.1s ease-in-out;
+}
+
+@keyframes dot-hightlighter {
+    0% {
+        color: var(--slate-gray);
+    }
+
+    50% {
+        color: var(--french-gray);
+    }
+
+    100% {
+        color: var(--platinum);
+    }
+}

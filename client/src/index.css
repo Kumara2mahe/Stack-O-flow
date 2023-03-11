@@ -1,0 +1,113 @@
+:root {
+    --air-superiority-blue: #7AA7C7;
+    --alice-blue: #E1ECF4;
+    --anti-flash-white: #F1F2F3;
+    --black: #000;
+    --cadet-gray: #9FA6AD;
+    --columbia-blue: #B3D3EA;
+    --corn-silk: #FBF3D5;
+    --cosmic-latte: #FDF7E2;
+    --davys-grey: #525960;
+    --dodger-blue: #0A95FF;
+    --dutch-white: #F1E5BC;
+    --eerie-black: #232629;
+    --french-blue: #0074CC;
+    --french-gray: #BABFC4;
+    --green-blue: #0063BF;
+    --indian-red: #DE4F54;
+    --lapis-lazuli: #2C5877;
+    --maya-blue: #6BBBF7;
+    --night: #0C0D0E;
+    --onyx: #3B4045;
+    --orange-wheel: #f48225;
+    --platinum: #E3E6E8;
+    --poppy: #D0393E;
+    --sea-salt: #F8F9F9;
+    --slate-gray: #6A737C;
+    --UCLA-blue: #39739D;
+    --uranian-blue: #A0C8E4;
+    --white: #FFF;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    --header-height: 50px;
+    --main-content-height: calc(100vh - var(--header-height));
+}
+
+header {
+    min-height: var(--header-height);
+}
+
+a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+/* -- Input-Field -- */
+form input,
+form textarea {
+    letter-spacing: 0.05em;
+    color: var(--onyx);
+    border: 0.1em solid var(--french-gray);
+    border-radius: 0.225em;
+    outline: none;
+}
+
+input:not([type="checkbox"]),
+textarea {
+    width: 100%;
+    padding: 0.6em;
+}
+
+input:focus,
+textarea:focus,
+button:focus {
+    box-shadow: 0 0 0 4px rgba(0, 116, 204, 0.15);
+    border-color: var(--maya-blue);
+}
+
+/* -- Input (error) -- */
+input.error,
+input.error:focus,
+textarea.error,
+textarea.error:focus {
+    border-color: var(--indian-red);
+}
+
+input.error:focus,
+textarea.error:focus {
+    box-shadow: 0 0 0 4px hsla(358, 62%, 47%, 0.15);
+}
+
+input:not(.error)~.error-hint,
+textarea:not(.error)~.error-hint {
+    display: none;
+}
+
+input.error~.error-hint,
+textarea.error~.error-hint {
+    font-size: 12px;
+    color: var(--poppy);
+    margin: 0;
+}
+
+.error-hint a {
+    color: inherit;
+    text-decoration: underline;
+}

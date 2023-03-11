@@ -1,0 +1,97 @@
+#side-navbar {
+    background-color: var(--white);
+    min-width: 10.25rem;
+    height: var(--main-content-height);
+    padding-top: 1.5rem;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+    overflow-y: auto;
+    position: sticky;
+    top: var(--header-height);
+}
+
+#side-navbar .links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    margin-bottom: 0.625rem;
+}
+
+/* --- Nav-Links --- */
+.links-container .nav-link {
+    font-weight: 400;
+    line-height: 2;
+    color: var(--davys-grey);
+    padding: 0.25rem;
+    padding-left: 0.5rem;
+    cursor: pointer;
+}
+
+.links-container .nav-link:hover,
+.links-container .nav-link:active {
+    color: var(--night);
+}
+
+.links-container .nav-link.active {
+    font-weight: 700;
+    background: var(--anti-flash-white);
+    color: var(--night);
+    border-right: 0.1875rem solid var(--orange-wheel);
+}
+
+/* -- NavLink (Icon) -- */
+.links-container .nav-link.ques-link {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.links-container .nav-link.ques-link img {
+    opacity: 0.7;
+    position: absolute;
+    left: 0.25rem;
+}
+
+.links-container .ques-link:hover img,
+.links-container .ques-link:active img {
+    opacity: 1;
+}
+
+/* --- Nav-SubCategory --- */
+.links-container .category .title {
+    font-size: 0.85em;
+    color: var(--slate-gray);
+    margin: 0 0 0.25rem 0.5rem;
+    text-transform: uppercase;
+}
+
+.links-container #public-features {
+    display: flex;
+    flex-direction: column;
+}
+
+#public-features .nav-link {
+    padding-left: 1.875rem;
+}
+
+@media (max-width:640px) {
+    #side-navbar:not(.show) {
+        display: none;
+    }
+
+    #side-navbar.show {
+        min-width: 12.5rem;
+        padding-left: calc(5vw / 2);
+        border: 0.1em solid var(--platinum);
+        border-top: none;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
+            0px 1px 4px 0px rgba(0, 0, 0, 0.05),
+            0px 2px 8px 0px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+    }
+
+    #side-navbar .links-container {
+        box-shadow: 0px 0px 0px 0px rgba(12, 13, 14, 0.05);
+    }
+}

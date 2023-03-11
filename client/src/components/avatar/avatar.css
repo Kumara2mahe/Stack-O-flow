@@ -1,0 +1,74 @@
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EB5757;
+    background-image: -webkit-linear-gradient(to right, var(--black), #EB5757);
+    background-image: linear-gradient(to right, var(--black), #EB5757);
+    position: relative;
+}
+
+.avatar p {
+    margin: 0;
+    position: absolute;
+}
+
+.avatar.cool-blues {
+    background-image: linear-gradient(to bottom, #2193B0, #6DD5ED);
+}
+
+.avatar.dark-ocean {
+    background-image: linear-gradient(to right, #373B44, #4286F4);
+}
+
+.avatar.evening-sunshine {
+    background-image: linear-gradient(to bottom left, #B92B27, #1565C0);
+}
+
+.avatar.flare {
+    background-image: linear-gradient(to right, #F12711, #F5AF19);
+}
+
+.avatar.king-yna {
+    background-image: linear-gradient(to right, #1A2A6C, #B21F1F, #FDBB2D);
+}
+
+.avatar.kyoo-pal {
+    background-image: linear-gradient(to right, #DD3E54, #6BE585);
+}
+
+.avatar.harvey {
+    background-image: linear-gradient(to right, #1F4037, #99F2C8);
+}
+
+.avatar.memariani {
+    background-image: linear-gradient(to right, #AA4B6B, #6B6B83, #3B8D99);
+}
+
+.avatar.metapolis {
+    background-image: linear-gradient(to right, #659999, #F4791F);
+}
+
+.avatar.moonlit-asteroid {
+    background-image: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
+}
+
+.avatar.pure-lust {
+    background-image: linear-gradient(to right, #333, #DD1818);
+}
+
+.avatar.terminal {
+    background-image: linear-gradient(to right, var(--black), #0F9B0F);
+}
+
+.avatar.visions-of-grandeur {
+    background-image: linear-gradient(to right, #000046, #1CB5E0);
+}
+
+.avatar.witching-hour {
+    background-image: linear-gradient(to right, #C31432, #240B36);
+}
+
+.avatar.yoda {
+    background-image: linear-gradient(to right, #F09, #493240);
+}

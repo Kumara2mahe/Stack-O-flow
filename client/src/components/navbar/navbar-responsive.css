@@ -1,0 +1,86 @@
+@media (min-width: 641px) {
+
+    .navbar-1 .nav-logo .icon,
+    .nav-link.menu-btn,
+    .search-container .icon {
+        display: none;
+    }
+
+    .navbar-1 .search-container,
+    .search-container form,
+    .navbar-1 .nav-btns {
+        flex-grow: 1;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .about-link,
+    .team-link {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    #main-navbar .navbar-1 {
+        justify-content: space-between;
+    }
+
+    .navbar-1 .nav-links {
+        gap: 0;
+    }
+
+    /* -- Menu-Icon -- */
+    .nav-link.menu-btn.opened span {
+        background-color: transparent;
+    }
+
+    .nav-link.menu-btn.opened span::before,
+    .nav-link.menu-btn.opened span::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+
+    .nav-link.menu-btn.opened span::after {
+        transform: rotate(45deg);
+    }
+
+    /* -- Logo -- */
+    .navbar-1 .nav-logo {
+        padding: 0.5em 0.3em;
+    }
+
+    .navbar-1 .nav-logo .logo,
+    .search-container:not(.show) .search-bar {
+        display: none;
+    }
+
+    .navbar-1 .nav-logo .icon {
+        width: 2.5em;
+    }
+
+    /* -- Search-Bar (Icons & Inputs) -- */
+    .search-container.show {
+        background-color: var(--platinum);
+    }
+
+    .search-container .icon {
+        padding: 30% 0.75em;
+        border-radius: 0.2em;
+        cursor: pointer;
+    }
+
+    .search-container .search-bar {
+        position: absolute;
+        --px10: 10px;
+        top: calc(100% + 10px);
+        left: 10px;
+        right: 10px;
+    }
+}
+
+@media (max-width: 350px) {
+    .navbar-1 .nav-btns {
+        overflow-x: auto;
+    }
+}

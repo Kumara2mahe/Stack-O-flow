@@ -1,0 +1,42 @@
+/* --- All-Answers --- */
+#post-answers {
+    padding-top: 1rem;
+}
+
+#post-answers #total-answers {
+    font-size: 1.1875rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0.625rem 0 0.5rem;
+}
+
+#post-answers .answer {
+    padding: 1rem;
+    border-bottom: 1px solid var(--platinum);
+}
+
+#post-answers .answer.highlight {
+    animation: highlighter 1.5s both;
+    transition: background-color 0.5s ease-in-out;
+    border-radius: 0.6em;
+}
+
+@keyframes highlighter {
+    0% {
+        background-color: rgba(253, 247, 226, 0.6);
+    }
+
+    100% {
+        background-color: rgba(251, 243, 213, 0.4);
+    }
+}
+
+@media (max-width: 680px) {
+    #post-answers #total-answers {
+        font-size: 1.0045rem;
+    }
+
+    #post-answers .answer {
+        padding: 0.85rem 0.7rem;
+    }
+}

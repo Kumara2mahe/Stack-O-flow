@@ -1,0 +1,95 @@
+#user-profile .profile-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+}
+
+/* -- Avatar -- */
+.profile-header #user-avatar {
+    margin: 0.5rem;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05),
+        0px 1px 4px 0px rgba(0, 0, 0, 0.05),
+        0px 2px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+#user-avatar .avatar {
+    font-size: 3.75em;
+    padding: 4rem;
+}
+
+#user-avatar .avatar p {
+    height: 74px;
+}
+
+/* -- User-Info -- */
+.profile-header .user-info {
+    margin: 0.5rem;
+    text-align: left;
+}
+
+.user-info .member-name {
+    font-size: 34px;
+    margin: 0.25rem 0 0.5rem;
+}
+
+.user-info .since {
+    display: flex;
+    align-items: center;
+    color: var(--slate-gray);
+    margin: 0.25rem 0;
+}
+
+.user-info .since .icon,
+.user-info .since .text {
+    margin: 0 0.125rem;
+}
+
+.user-info .since .icon {
+    color: rgb(145, 153, 161);
+}
+
+/* -- Edit-Btn -- */
+.profile-header .edit-btn-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.profile-header .edit-btn-container .edit-btn {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+}
+
+@media (max-width: 980px) {
+    #user-avatar .avatar {
+        font-size: 3em;
+        padding: 3rem;
+    }
+
+    #user-avatar .avatar p {
+        height: 60px;
+    }
+}
+
+@media (max-width: 640px) {
+    #user-avatar .avatar {
+        font-size: 2.25em;
+        padding: 2rem;
+    }
+
+    #user-avatar .avatar p {
+        height: 46px;
+    }
+
+    .user-info .member-name {
+        font-size: 1.5815rem;
+    }
+
+    .user-info .since .text {
+        font-size: 0.6875rem;
+    }
+}

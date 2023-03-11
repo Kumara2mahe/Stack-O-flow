@@ -1,0 +1,132 @@
+#main-navbar {
+    background-color: var(--sea-salt);
+    height: var(--header-height);
+    border-top: 3px solid var(--orange-wheel);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        0 1px 4px rgba(0, 0, 0, 0.05),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 5;
+}
+
+#main-navbar .navbar-1 {
+    height: 100%;
+    overflow: hidden;
+}
+
+#main-navbar .navbar-1,
+.navbar-1 .nav-links,
+.navbar-1 .nav-btns {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+/* --- Navbar-Links --- */
+.navbar-1 .nav-link {
+    font-weight: 400;
+    color: var(--davys-grey);
+    padding: 0.46em 0.93em;
+    transition: 50ms;
+    cursor: pointer;
+}
+
+.navbar-1 .nav-link:hover,
+.search-container .icon:hover {
+    background-color: var(--platinum);
+    color: var(--eerie-black);
+}
+
+/* -- Logo -- */
+.nav-link.nav-logo {
+    padding: 1em;
+}
+
+.nav-link.nav-item {
+    border-radius: 1.55em;
+}
+
+/* -- Toggle-Menu (Icon) -- */
+.nav-link.menu-btn {
+    display: flex;
+    background-color: transparent;
+    color: var(--night);
+    padding: 1.5rem 1rem;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
+
+.nav-link.menu-btn,
+.nav-link.menu-btn:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.nav-link.menu-btn span,
+.nav-link.menu-btn span::before,
+.nav-link.menu-btn span::after {
+    background-color: var(--davys-grey);
+    width: 1rem;
+    height: 0.125rem;
+    position: relative;
+}
+
+.nav-link.menu-btn span::before,
+.nav-link.menu-btn span::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: -5px;
+    transition: top 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.nav-link.menu-btn span::after {
+    top: 5px;
+}
+
+/* --- Search-Bar --- */
+.navbar-1 .search-container,
+.search-container form {
+    display: flex;
+    align-items: center;
+}
+
+.search-container form {
+    position: relative;
+}
+
+.search-container form input {
+    padding: 0.6em 0.9em 0.6em 2.4em;
+}
+
+.search-container .search-icon {
+    opacity: 0.7;
+    position: absolute;
+    left: 0.615em;
+}
+
+/* --- Auth-Buttons --- */
+.navbar-1 .nav-btns {
+    padding-right: 0.5em;
+}
+
+.nav-item.secondary-btn {
+    line-height: 15px;
+    padding: 0.6em 0.8em;
+    cursor: pointer;
+}
+
+.navbar-1 .btn-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.navbar-1 .btn-container,
+.nav-item.login-btn {
+    margin-left: 0.25em;
+}

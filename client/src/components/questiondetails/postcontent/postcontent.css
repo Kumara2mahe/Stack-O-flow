@@ -1,0 +1,113 @@
+#question-details .post-content-cell {
+    flex: 1;
+}
+
+/* --- Post-Details --- */
+#question-details .post-content-cell .post-body {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    color: var(--eerie-black);
+}
+
+.post-content-cell .post-body p {
+    margin: 0 0 1.1em;
+}
+
+.post-content-cell .post-body p:last-of-type {
+    margin: 0;
+}
+
+.post-content-cell .post-body .tab-space {
+    display: inline-block;
+    width: calc(4 * 0.5rem);
+}
+
+/* -- Tags -- */
+#question-details .post-tags {
+    margin: 1.5rem 0 0.75rem;
+    padding-bottom: 1em;
+}
+
+#question-details .tags-wrapper .tag {
+    margin: 0;
+}
+
+#question-details .post-metadata {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    row-gap: 0.5em;
+    margin: 1rem 0;
+    padding-top: 0.25rem;
+}
+
+.post-metadata .post-options {
+    flex: 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 6rem;
+    margin-right: 0.75rem;
+    padding-top: 0.125rem;
+}
+
+.post-metadata .post-options .option {
+    color: var(--slate-gray);
+    margin: 0.25rem;
+    cursor: pointer;
+}
+
+.post-metadata .post-options .option:hover,
+.post-metadata .post-options .option:active {
+    color: rgb(131, 140, 149);
+}
+
+/* -- Author Details -- */
+.post-metadata .post-author {
+    color: var(--slate-gray);
+    width: 12.5rem;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.55rem 0 0.6rem;
+    border-radius: 0.1875rem;
+}
+
+.post-metadata .post-author.user-author {
+    background-color: rgb(217, 234, 247);
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.6rem;
+}
+
+.post-author .post-time {
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.post-author .author-info {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+    .post-metadata .post-options {
+        margin-right: 1rem;
+    }
+
+    .post-metadata .post-options .option,
+    .post-author .author-info {
+        font-size: 0.6875rem;
+    }
+
+    .post-metadata .post-author {
+        width: 10rem;
+        padding: 0.3125rem 0.375rem 0 0.4375rem;
+    }
+
+    .post-metadata .post-author.user-author {
+        padding-bottom: 0.4375rem;
+    }
+}
