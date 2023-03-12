@@ -44,7 +44,7 @@ export const voteQuestion = async (req, res) => {
             if (uIndex === -1) {
                 question.votes.uvs.push(userId)
             }
-            else question.votes.uvs.splice(uIndex)
+            else question.votes.uvs.splice(uIndex, 1)
         }
         else if (type === "down-vote") {
             if (uIndex !== -1) {
@@ -53,7 +53,7 @@ export const voteQuestion = async (req, res) => {
             if (dIndex === -1) {
                 question.votes.dvs.push(userId)
             }
-            else question.votes.dvs.splice(dIndex)
+            else question.votes.dvs.splice(dIndex, 1)
         }
         question.votes.count = question.votes.uvs.length - question.votes.dvs.length
         await questions.findByIdAndUpdate(_id, {
