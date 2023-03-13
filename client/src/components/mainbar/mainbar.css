@@ -67,7 +67,7 @@
 }
 
 .post-contents-summary {
-    flex-grow: 1;
+    width: 100%;
 }
 
 /* -- Post-Title -- */
