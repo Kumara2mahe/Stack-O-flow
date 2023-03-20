@@ -1,3 +1,7 @@
+#main-bar .loading {
+    min-height: 6rem;
+}
+
 .main-header {
     display: flex;
     flex-wrap: wrap;

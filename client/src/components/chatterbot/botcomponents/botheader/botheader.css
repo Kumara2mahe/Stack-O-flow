@@ -1,0 +1,28 @@
+#bot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--orange-wheel);
+    color: var(--white);
+    height: 3.5rem;
+    padding: 0 0.625rem;
+    border-bottom: 2px solid var(--peach);
+}
+
+#bot-header .header-title {
+    font-size: 1.05rem;
+}
+
+#bot-header .close-btn {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    fill: var(--white);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+#bot-header .close-btn:focus {
+    box-shadow: 0 0 0 2px rgb(247, 205, 170);
+}

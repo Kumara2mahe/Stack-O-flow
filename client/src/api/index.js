@@ -3,13 +3,14 @@ import axios from "axios"
 const API = axios.create({ baseURL: process.env.REACT_APP_API_URL })
 
 API.interceptors.request.use(req => {
-    const USER = window.sessionStorage.getItem("profile")
+    const USER = window.localStorage.getItem("sof-profile")
     if (USER) {
         req.headers.setAuthorization(`Bearer ${JSON.parse(USER).token}`)
     }
     return req
 })
 
+// Forum
 export const signUp = (data) => API.post("/user/signup", data)
 export const logIn = (data) => API.post("/user/login", data)
 
@@ -24,3 +25,8 @@ export const deleteQuestion = (id, data) => API.patch(`/questions/delete/${id}`,
 
 export const postAnswer = (id, data) => API.patch(`/answer/post/${id}`, data)
 export const deleteAnswer = (id, data) => API.patch(`/answer/delete/${id}`, data)
+
+// Chatbot
+export const getBotReply = (data) => API.post("/bot/reply", data)
+export const sendOtp = (data) => API.post("/bot/sendotp", data)
+export const verifyOtp = (data) => API.post("/bot/verifyotp", data)

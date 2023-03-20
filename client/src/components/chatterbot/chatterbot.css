@@ -1,0 +1,49 @@
+#chatter-bot #floating-btn,
+#chatter-bot #bot-container {
+    box-shadow: 0 0.75rem 1.5rem 0 rgba(0, 0, 0, 0.15);
+    transform: scale(1);
+    transition: transform 0.3s ease, opacity 0.3s ease-out;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 4;
+}
+
+#chatter-bot #floating-btn:not(.opened),
+#chatter-bot #bot-container:not(.opened) {
+    transform: scale(0);
+    opacity: 0.5;
+}
+
+/* --- Bubble --- */
+#chatter-bot #floating-btn {
+    background: url("../../assets/chat-bubble.svg") no-repeat center/48% var(--orange-wheel);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* --- Bot-Container --- */
+#chatter-bot #bot-container {
+    background-color: var(--sea-salt);
+    width: 360px;
+    height: 500px;
+    border-radius: 0.625rem;
+    transform-origin: bottom right;
+    overflow: hidden;
+}
+
+@media (max-width: 481px) {
+    #chatter-bot #bot-container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    #chatter-bot #bot-container {
+        bottom: 0;
+        right: 0;
+        z-index: 10;
+    }
+}

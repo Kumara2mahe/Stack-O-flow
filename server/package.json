@@ -5,6 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
+        "train": "node chatbot/trainbot.js",
         "start": "nodemon index.js"
     },
     "author": "Mahendra Kumara",
@@ -16,6 +17,8 @@
         "express": "^4.18.2",
         "jsonwebtoken": "^9.0.0",
         "mongoose": "^6.10.0",
+        "node-nlp": "^4.26.1",
+        "nodemailer": "^6.9.1",
         "nodemon": "^2.0.20"
     }
 }

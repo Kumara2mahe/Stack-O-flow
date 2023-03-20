@@ -8,7 +8,7 @@ const auth = (req, res, next) => {
 
         next()
     } catch (error) {
-        console.log(error.message)
+        res.status(401).json({ message: error.message })
     }
 }
 

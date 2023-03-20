@@ -81,3 +81,12 @@ export const validateBodyField = (form, submitbtn, { ...opts }) => {
     }
     return !(submitbtn.disabled = false)
 }
+
+export const parseErrorResText = (error, defaultMsg) => {
+    let errMsg = defaultMsg
+    if ((typeof error?.request?.response) === "string" && error?.request?.response !== "") {
+        errMsg = JSON.parse(error?.request?.response)
+        if (errMsg) errMsg = errMsg.message
+    }
+    return errMsg
+}

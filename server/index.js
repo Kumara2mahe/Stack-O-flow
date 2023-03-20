@@ -6,6 +6,7 @@ import dotenv from "dotenv"
 import userRoutes from "./routes/user.js"
 import questionRoutes from "./routes/questions.js"
 import answerRoutes from "./routes/answer.js"
+import botRoutes from "./routes/chatbot.js"
 
 const app = express()
 app.use(express.json({ limit: "30mb", extended: true }))
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRoutes)
 app.use("/questions", questionRoutes)
 app.use("/answer", answerRoutes)
+app.use("/bot", botRoutes)
 
 const PORT = process.env.PORT || 5500
 

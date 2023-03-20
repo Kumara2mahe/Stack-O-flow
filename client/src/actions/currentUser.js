@@ -1,6 +1,6 @@
 
 export const setUser = () => {
-    const profile = window.sessionStorage.getItem("profile")
+    const profile = window.localStorage.getItem("sof-profile")
     return {
         type: "FETCH_USER",
         payload: profile ? JSON.parse(profile) : profile

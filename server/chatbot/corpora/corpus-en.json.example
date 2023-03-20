@@ -1,0 +1,28 @@
+{
+    "name": "Example Corpus File",
+    "locale": "en-US",
+    "data": [
+        {
+            "intent": "greetings.hello",
+            "utterances": [
+                "hello",
+                "hi"
+            ],
+            "answers": [
+                "Hey there!",
+                "Greetings!"
+            ]
+        },
+        {
+            "intent": "greetings.bye",
+            "utterances": [
+                "goodbye for now",
+                "bye bye take care"
+            ],
+            "answers": [
+                "Till next time",
+                "see you soon!"
+            ]
+        }
+    ]
+}

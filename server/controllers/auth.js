@@ -14,7 +14,7 @@ export const signup = async (req, res) => {
         const hashedPwd = await bcrypt.hash(password, salt)
         const newUser = await users.create({ name, email, avatar, password: hashedPwd })
         res.status(200).json({
-            result: { _id: newUser._id, avatar, name },
+            result: { _id: newUser._id, avatar, name, email },
             token: generateToken(newUser)
         })
     } catch (error) {
@@ -37,7 +37,8 @@ export const login = async (req, res) => {
             result: {
                 _id: existingUser._id,
                 avatar: existingUser.avatar,
-                name: existingUser.name
+                name: existingUser.name,
+                email
             },
             token: generateToken(existingUser)
         })

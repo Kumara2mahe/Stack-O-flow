@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom"
 
 const NonAuthRoutes = () => {
-    const USER = window.sessionStorage.getItem("profile")
+    const USER = window.localStorage.getItem("sof-profile")
     return (
         USER === null ? <Outlet /> : <Navigate to="/" />
     )

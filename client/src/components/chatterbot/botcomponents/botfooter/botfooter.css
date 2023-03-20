@@ -1,0 +1,70 @@
+#bot-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white);
+    width: 100%;
+    height: 3.5rem;
+    border-top: 1px solid var(--platinum);
+    position: absolute;
+    bottom: 0;
+}
+
+#bot-footer .empty-hint {
+    background-color: var(--snow);
+    color: var(--poppy);
+    padding: 0.25em 0.5em 0.25em 1em;
+    border-left: 0.125rem solid var(--indian-red);
+    border-radius: 0 0.25rem 0.25rem 0;
+    box-shadow: 0 -1rem 0 1rem rgba(248, 249, 249, 0.4);
+    transition: transform 0.2s ease;
+    position: absolute;
+    top: -2rem;
+    left: 0.5rem;
+}
+
+#bot-footer:not(.empty) .empty-hint {
+    z-index: -1;
+    transform: translateY(2.5rem);
+}
+
+#bot-footer .input-box,
+#bot-footer #msg-submit-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+#bot-footer .input-box {
+    font-size: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+    padding: calc(1em - 0.1875rem) 0 calc(1em - 0.1875rem) calc(0.6em - 0.1875rem);
+    border-bottom: 0.1875rem solid transparent;
+    border-bottom-left-radius: 0.625rem;
+}
+
+
+#bot-footer .input-box:focus {
+    border-bottom-color: var(--dodger-blue);
+}
+
+#bot-footer.empty .input-box {
+    border-color: var(--indian-red);
+}
+
+#bot-footer #msg-submit-btn {
+    opacity: 0.75;
+    padding: 1rem 1rem 0.75rem;
+    transition: opacity 0.1s ease;
+}
+
+#bot-footer #msg-submit-btn:focus-visible svg {
+    outline: 2px solid var(--dodger-blue);
+}
+
+#bot-footer #msg-submit-btn:not(:disabled):hover {
+    opacity: 1;
+    cursor: pointer;
+}

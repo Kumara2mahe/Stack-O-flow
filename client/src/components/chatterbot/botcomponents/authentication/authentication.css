@@ -1,0 +1,84 @@
+#bot-chat-area .info {
+    background-color: var(--white);
+    margin: 1.5em 0 2.5em 0.5rem;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+#bot-chat-area .info-head {
+    font-size: 1.25em;
+    font-weight: 500;
+    text-align: center;
+    color: var(--dodger-blue);
+    margin: 0.5em 0;
+}
+
+#bot-chat-area .info-hint {
+    font-size: 0.9em;
+    color: var(--davys-grey);
+}
+
+/* -- Warning -- */
+#bot-chat-area .info.warning {
+    border-color: var(--uranian-blue);
+}
+
+#bot-container.auth-error .warning {
+    border-color: var(--poppy);
+}
+
+#bot-container.auth-error .warning .info-head {
+    color: var(--indian-red);
+}
+
+#bot-chat-area .warning .info-hint {
+    text-align: center;
+}
+
+/* -- Greeting -- */
+#bot-chat-area .info.greeting {
+    border-color: var(--dutch-white);
+}
+
+#bot-chat-area .greet {
+    font-size: 1.1em;
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+#bot-chat-area .greet .user-name {
+    font-size: 1.2em;
+    font-family: monospace;
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    text-decoration: underline 2px var(--orange-wheel);
+}
+
+/* -- Verification -- */
+.verification-choice {
+    text-align: right;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+.verification-choice #send-otp-btn {
+    background-color: transparent;
+    color: var(--orange-wheel);
+    padding: 0.5em;
+    border: 1px solid var(--orange-wheel);
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.verification-choice #send-otp-btn:hover,
+.verification-choice #send-otp-btn:focus {
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.verification-choice #send-otp-btn:focus {
+    box-shadow: 0 0 0 4px rgba(244, 130, 37, 0.15);
+}
