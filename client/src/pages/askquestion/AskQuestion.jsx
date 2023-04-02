@@ -2,9 +2,11 @@ import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { validateTags, maxTags, validateForm, validateBodyField, generateErrorHint } from "../../utils/form"
+import ShowRequestError, { showError } from "../../components/showRequestError/ShowRequestError"
+import { validateTags, maxTags, validateForm, validateBodyField } from "../../utils/form"
 import { toggleSpinnerAnim } from "../../utils"
 import { askQuestion } from "../../actions/questions"
+import { getUser } from "../../actions/user"
 import "./askquestion.css"
 
 const AskQuestion = () => {
@@ -40,12 +42,9 @@ const AskQuestion = () => {
                 .then(() => {
                     navigate("/questions")
                 })
-                .catch((error) => {
-                    const titleInput = e.target.querySelector("#posttitle")
-                    generateErrorHint(titleInput, error?.response?.data?.message, e.target.querySelector(".submit-btn"), 2.5)
-                    titleInput.focus()
-                })
+                .catch((error) => showError(error?.response?.data?.message))
                 .finally(() => {
+                    dispatch(getUser(USER))
                     toggleSpinnerAnim()
                     e.target.reset()
                 })
@@ -80,6 +79,7 @@ const AskQuestion = () => {
                     </div>
                 </form>
             </section>
+            <ShowRequestError />
         </article>
     )
 }

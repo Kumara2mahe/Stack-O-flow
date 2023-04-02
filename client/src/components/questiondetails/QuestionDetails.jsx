@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from "react-redux"
 import Question from "./question/Question"
 import Answers from "./answers/Answers"
 import Tags from "../tags/Tags"
-import { validateBodyField, generateErrorHint } from "../../utils/form"
+import ShowRequestError, { showError } from "../showRequestError/ShowRequestError"
+import { validateBodyField } from "../../utils/form"
 import { toggleSpinnerAnim, scrollToElement } from "../../utils"
 import { postAnswer } from "../../actions/answer"
+import { getUser } from "../../actions/user"
 import "./questiondetails.css"
 
 
@@ -46,12 +48,9 @@ const QuestionDetails = ({ question }) => {
                 .then(() => {
                     scrollToElement(e.target.previousElementSibling.querySelector(".answer:last-of-type"), 25)
                 })
-                .catch((error) => {
-                    const bodyTextArea = e.target.querySelector("#postbody")
-                    generateErrorHint(bodyTextArea, error?.response?.data?.message, e.target.querySelector(".submit-btn"), 2.5)
-                    bodyTextArea.focus()
-                })
+                .catch((error) => showError(error?.response?.data?.message))
                 .finally(() => {
+                    dispatch(getUser(USER))
                     toggleSpinnerAnim()
                     e.target.reset()
                 })
@@ -79,6 +78,7 @@ const QuestionDetails = ({ question }) => {
                     </div>or <Link to="/askquestion" className="link">ask your own question</Link>.
                 </div>
             </div>
+            <ShowRequestError />
         </div>
     )
 }

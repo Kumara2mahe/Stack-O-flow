@@ -1,0 +1,241 @@
+.plan {
+    background-color: var(--white);
+    height: 400px;
+    width: 275px;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05),
+        0 20px 48px rgba(0, 0, 0, 0.05),
+        0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease-in-out;
+    position: relative;
+}
+
+.plan.bronze {
+    border: 1px solid rgba(246, 190, 143, 0.3);
+}
+
+.plan.silver {
+    border: 1px solid rgba(192, 192, 192, 0.6);
+}
+
+.plan.gold {
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.plan.bronze:hover,
+.plan.bronze.active {
+    box-shadow: 0 10px 20px rgba(246, 190, 143, 0.15),
+        0 20px 48px rgba(246, 190, 143, 0.15),
+        0 1px 4px rgba(246, 190, 143, 0.15);
+}
+
+.plan.silver:hover,
+.plan.silver.active {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1),
+        0 20px 48px rgba(0, 0, 0, 0.1),
+        0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plan.gold:hover,
+.plan.gold.active {
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15),
+        0 20px 48px rgba(255, 215, 0, 0.15),
+        0 1px 4px rgba(255, 215, 0, 0.15);
+}
+
+/* -- Active-Badge -- */
+.plan.active .active-badge {
+    display: flex;
+    align-items: center;
+    gap: 0 0.2rem;
+    background-color: transparent;
+    color: var(--SGBUS-green);
+    padding: 1px 0.25rem;
+    border: 1px solid var(--SGBUS-green);
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 1.25rem;
+    left: -0.75rem;
+    transform: rotateZ(-90deg);
+}
+
+.plan.active .active-badge::before {
+    content: "active";
+    height: 1.25rem;
+    width: 2.25rem;
+}
+
+.plan.active .active-badge::after {
+    content: "";
+    background-color: var(--green);
+    padding: 0.25em;
+    border-radius: 50%;
+}
+
+.plan:not(.active) .active-badge {
+    display: none;
+}
+
+/* -- Header -- */
+.plan .plan-header {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: inherit;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+    transition: color 0.3s ease-in-out;
+    position: relative;
+    top: -3.5rem;
+}
+
+.plan:hover .plan-header,
+.plan.active .plan-header {
+    color: var(--white);
+}
+
+.plan.bronze .plan-header {
+    background-color: var(--peach);
+}
+
+.plan.silver .plan-header {
+    background-color: var(--silver);
+}
+
+.plan.gold .plan-header {
+    background-color: var(--gold);
+}
+
+.plan .plan-header .plan-title {
+    font-size: 2em;
+    font-weight: 500;
+    margin: 0 0 0.25em;
+}
+
+.plan .plan-header .plan-price {
+    font-size: 2.25em;
+    font-weight: 800;
+    margin: 0 0 0.5em;
+}
+
+.plan .plan-header p {
+    margin: 0;
+}
+
+/* -- Details -- */
+.plan .plan-details {
+    padding-left: 2.5rem;
+}
+
+.plan-details .benefit {
+    text-align: left;
+    position: relative;
+}
+
+.plan-details .benefit::before {
+    content: "\2714";
+    position: absolute;
+    left: -1rem;
+}
+
+.plan.bronze .plan-details .benefit::before {
+    color: var(--peach);
+}
+
+.plan.silver .plan-details .benefit::before {
+    color: var(--silver);
+}
+
+.plan.gold .plan-details .benefit::before {
+    color: var(--gold);
+}
+
+/* -- Confirmation -- */
+.plan .plan-confirmation {
+    padding: 2rem 0;
+    border-radius: inherit;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.plan-confirmation .so-btn {
+    font-size: 1.2em;
+    font-weight: 500;
+    background-color: var(--slate-grey);
+    padding: 0.75em 2em;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.plan.bronze .so-btn {
+    background-color: var(--peach);
+}
+
+.plan.silver .so-btn {
+    background-color: var(--silver);
+}
+
+.plan.gold .so-btn {
+    background-color: var(--gold);
+}
+
+.plan .so-btn:hover,
+.plan .so-btn:active {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.plan .so-btn:focus-visible {
+    box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 4px;
+    box-shadow: 0 0 0 4px rgba(0, 116, 204, 0.15);
+}
+
+.plan.bronze .so-btn:hover,
+.plan.bronze .so-btn:active {
+    color: var(--bronze);
+    border-color: var(--peach);
+}
+
+.plan.silver .so-btn:hover,
+.plan.silver .so-btn:active {
+    color: var(--battleship-gray);
+    border-color: var(--silver);
+}
+
+.plan.gold .so-btn:hover,
+.plan.gold .so-btn:active {
+    color: var(--saffron);
+    border-color: var(--gold);
+}
+
+@media (max-width: 640px) {
+    .plan {
+        height: 300px;
+        width: 250px;
+    }
+
+    .plan .plan-details {
+        margin-top: -35px;
+    }
+
+    .plan .plan-header .plan-title {
+        font-size: 1.5em;
+    }
+
+    .plan .plan-header .plan-price {
+        font-size: 1.75em;
+    }
+
+    .plan-confirmation .so-btn {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 300px) {
+    .plan .plan-details {
+        padding-left: 1rem;
+    }
+}

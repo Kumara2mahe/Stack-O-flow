@@ -97,6 +97,17 @@ form #aboutMe {
     background-color: var(--green-blue);
 }
 
+.primary-btn.transparent-with-border {
+    background-color: transparent;
+    color: var(--dodger-blue);
+    border-color: var(--dodger-blue);
+}
+
+.primary-btn.transparent-with-border:not(:disabled):hover,
+.primary-btn.transparent-with-border:not(:disabled):active {
+    background-color: var(--alice-blue);
+}
+
 .secondary-btn {
     background-color: var(--alice-blue);
     color: var(--UCLA-blue);
@@ -139,6 +150,54 @@ form #aboutMe {
 
 .grey-btn:focus {
     box-shadow: rgba(35, 38, 41, 0.1) 0px 0px 0px 4px
+}
+
+.blue-no-border-btn {
+    background-color: transparent;
+    color: var(--french-blue);
+    border: 1px solid transparent;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.blue-no-border-btn:hover,
+.blue-no-border-btn:focus {
+    background-color: rgb(240, 248, 255);
+    color: var(--green-blue);
+}
+
+.blue-no-border-btn:active {
+    background-color: rgb(205, 233, 254);
+    color: var(--french-blue);
+}
+
+.blue-no-border-btn:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.blue-no-border-btn:focus-visible {
+    box-shadow: rgba(0, 116, 204, 0.15) 0 0 0 4px;
+}
+
+.green-trans-border-btn {
+    background-color: transparent;
+    color: var(--SGBUS-green);
+    border: 1px solid var(--SGBUS-green);
+}
+
+.green-trans-border-btn:hover {
+    background-color: var(--nyanza);
+    color: var(--SGBUS-green);
+    border: 1px solid var(--SGBUS-green);
+    cursor: pointer;
+}
+
+.green-trans-border-btn:active,
+.green-trans-border-btn:focus {
+    border: 1px solid var(--SGBUS-green);
+    box-shadow: rgba(0, 224, 0, 0.15) 0 0 0 4px;
 }
 
 /* -- Tags -- */

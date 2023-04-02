@@ -9,6 +9,8 @@ import Users from "../../pages/users/Users"
 import UserProfile from "../../pages/users/userprofile/UserProfile"
 import AskQuestion from "../../pages/askquestion/AskQuestion"
 import Tags from "../../pages/tags/Tags"
+import Pricing from "../../pages/pricing/Pricing"
+import PaymentStatus from "../../pages/pricing/status/PaymentStatus"
 
 const AllRoutes = () => {
     return (
@@ -24,8 +26,10 @@ const AllRoutes = () => {
             <Route path="/users/:id" element={<UserProfile />} />
             <Route element={<AuthRoutes />}>
                 <Route path="/askquestion" element={<AskQuestion />} />
+                <Route path="/pricing/status" element={<PaymentStatus />} />
             </Route>
             <Route path="/tags" element={<Tags />} />
+            <Route path="/pricing" element={<Pricing />} />
         </Routes>
     )
 }

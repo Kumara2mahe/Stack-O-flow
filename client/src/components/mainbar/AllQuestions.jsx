@@ -28,7 +28,7 @@ const AllQuestions = ({ questions }) => {
                                     <Avatar gradientBg={ques.by.avatar} fontSize="1em" fontWeight="600" padV="0.5rem" padH="0.5rem" borderRadius="0.2em" cursor="pointer">{ques.by.name}</Avatar>
                                     <span className="link">{ques.by.name}</span>
                                 </Link>
-                                <time className="posted-time">asked {moment(Number(ques.on)).fromNow()}</time>
+                                <time className="posted-time">asked {moment(ques.on).fromNow()}</time>
                             </div>
                         </div>
                     </div>

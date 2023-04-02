@@ -1,0 +1,34 @@
+{
+    "plans": [
+        {
+            "type": "bronze",
+            "name": "Free",
+            "price": 0,
+            "benefits": [
+                "2 questions / day",
+                "1 answer / day"
+            ],
+            "button": "Continue"
+        },
+        {
+            "type": "silver",
+            "name": "Standard",
+            "price": 150,
+            "benefits": [
+                "10 questions / day",
+                "5 answers / day"
+            ],
+            "button": "Purchase"
+        },
+        {
+            "type": "gold",
+            "name": "Premium",
+            "price": 1999,
+            "benefits": [
+                "unlimited questions",
+                "unlimited answers"
+            ],
+            "button": "Purchase"
+        }
+    ]
+}

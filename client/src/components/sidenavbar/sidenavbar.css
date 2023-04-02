@@ -64,12 +64,12 @@
     text-transform: uppercase;
 }
 
-.links-container #public-features {
+.links-container .features {
     display: flex;
     flex-direction: column;
 }
 
-#public-features .nav-link {
+.features .nav-link {
     padding-left: 1.875rem;
 }
 

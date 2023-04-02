@@ -1,13 +1,31 @@
 import questions from "../models/question.js"
+import users from "../models/auth.js"
+import { updateLimitation } from "./pricing/limitation.js"
 
 export const askQuestion = async (req, res) => {
     const postedQuestion = req.body
     const newPost = new questions(postedQuestion)
     try {
+        let user = await users.findById(postedQuestion.by.uUid)
+        user = await updateLimitation(user)
+        const HAS_LIMIT = user.stripe.limit.toObject()
+        if (HAS_LIMIT && user.stripe.limit.qCount <= 0) {
+            return res.status(403).json({ message: "Daily question limit exceeded! Upgrade plan or Try again later." })
+        }
         await newPost.save()
-        res.status(200).json("Question Posted Successfully")
+        if (HAS_LIMIT) {
+            await users.findByIdAndUpdate(user._id, {
+                $set: {
+                    stripe: {
+                        ...user.stripe, limit: { ...user.stripe.limit, qCount: user.stripe.limit.qCount - 1 }
+                    }
+                }
+            })
+        }
+        res.status(200).json({ message: "Question Posted Successfully" })
     } catch (error) {
-        res.status(409).json("Something went wrong, while posting question.")
+        console.log(error.message)
+        res.status(409).json({ message: "Something went wrong, while posting question." })
     }
 }
 

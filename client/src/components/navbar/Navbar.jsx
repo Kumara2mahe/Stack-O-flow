@@ -7,6 +7,7 @@ import decode from "jwt-decode"
 import { setUser } from "../../actions/currentUser"
 import Avatar from "../avatar/Avatar"
 import { toggleSideNavbar, toggleSearchBar, smallScreenPx } from "./utils"
+import { getUser } from "../../actions/user"
 import siteLogo from "../../assets/logo.png"
 import siteIcon from "../../assets/icon.png"
 import search from "../../assets/search.svg"
@@ -42,6 +43,9 @@ const Navbar = () => {
             if (decodedToken.exp * 1000 < new Date().getTime()) {
                 logoutUser()
             }
+        }
+        if (USER?.result?._id && USER?.result?.stripe?.limit) {
+            USER.result.stripe.limit.till < Date.now() && dispatch(getUser(USER))
         }
     })
     return (
@@ -86,6 +90,6 @@ const Navbar = () => {
         </header>
     )
 }
-const SINGLEPAGES = ["/auth", "/askquestion"]
+const SINGLEPAGES = ["/auth", "/askquestion", "/pricing"]
 
 export default Navbar

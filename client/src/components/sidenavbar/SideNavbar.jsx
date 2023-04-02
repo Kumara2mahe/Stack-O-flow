@@ -10,7 +10,7 @@ const SideNavbar = () => {
                 <NavLink to="/" className="nav-link" activeclassname="active">Home</NavLink>
                 <div className="category">
                     <p className="title">Public</p>
-                    <div id="public-features">
+                    <div className="features">
                         <NavLink to="/questions" className="nav-link ques-link" activeclassname="active">
                             <img src={globe} alt="glob" />Questions</NavLink>
                         <NavLink to="/tags" className="nav-link" activeclassname="active">Tags</NavLink>
@@ -18,9 +18,9 @@ const SideNavbar = () => {
                     </div>
                 </div>
                 <div className="category">
-                    <p className="title">Collectives</p>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                        <NavLink to="/auth" className="nav-link" activeclassname="active">&copy; lorem ipsum</NavLink>
+                    <p className="title">Developers</p>
+                    <div className="features">
+                        <NavLink to="/pricing" className="nav-link" activeclassname="active">Pricing</NavLink>
                     </div>
                 </div>
             </div>

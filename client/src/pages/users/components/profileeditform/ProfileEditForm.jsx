@@ -61,7 +61,7 @@ const ProfileEditForm = ({ user, switchEditMode }) => {
                 </div>
                 <div className="btn-container">
                     <button className="so-btn primary-btn submit-btn" id="save-profile-btn" type="submit">Save profile</button>
-                    <button className="so-btn" id="cancel-btn" onClick={() => { switchEditMode(false) }} type="button">Cancel</button>
+                    <button className="so-btn blue-no-border-btn" id="cancel-btn" onClick={() => { switchEditMode(false) }} type="button">Cancel</button>
                 </div>
             </form>
 

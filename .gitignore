@@ -23,3 +23,4 @@ yarn-error.log*
 transport-config.js
 **/corpora/*.json
 model.nlp
+backup*

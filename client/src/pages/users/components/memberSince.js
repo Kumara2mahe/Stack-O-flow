@@ -1,13 +1,11 @@
 import moment from "moment"
 
 const memberSince = (time) => {
-    const since = Number(time)
-
-    let text = `for ${moment(since).fromNow(true)}`
-    if (fromToday(since)) {
+    let text = `for ${moment(time).fromNow(true)}`
+    if (fromToday(time)) {
         text = "since today"
     }
-    else if (lessThanaDay(since)) {
+    else if (lessThanaDay(time)) {
         text = "for a day"
     }
     return "Member " + text

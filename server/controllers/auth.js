@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 
 import users from "../models/auth.js"
+import { updateLimitation } from "./pricing/limitation.js"
 
 export const signup = async (req, res) => {
     const { name, email, password, avatar } = req.body
@@ -14,7 +15,14 @@ export const signup = async (req, res) => {
         const hashedPwd = await bcrypt.hash(password, salt)
         const newUser = await users.create({ name, email, avatar, password: hashedPwd })
         res.status(200).json({
-            result: { _id: newUser._id, avatar, name, email },
+            result: {
+                _id: newUser._id,
+                avatar, name, email,
+                stripe: {
+                    plan: newUser.stripe.plan,
+                    limit: newUser.stripe.limit
+                }
+            },
             token: generateToken(newUser)
         })
     } catch (error) {
@@ -25,7 +33,7 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     const { email, password } = req.body
     try {
-        const existingUser = await users.findOne({ email })
+        let existingUser = await users.findOne({ email })
         if (!existingUser) {
             return res.status(404).json({ message: "User doesn't exists" })
         }
@@ -33,12 +41,17 @@ export const login = async (req, res) => {
         if (!pwdMatched) {
             return res.status(400).json({ message: "Invalid credentials." })
         }
+        existingUser = await updateLimitation(existingUser)
         res.status(200).json({
             result: {
                 _id: existingUser._id,
                 avatar: existingUser.avatar,
                 name: existingUser.name,
-                email
+                email,
+                stripe: {
+                    plan: existingUser.stripe.plan,
+                    limit: existingUser.stripe.limit
+                }
             },
             token: generateToken(existingUser)
         })

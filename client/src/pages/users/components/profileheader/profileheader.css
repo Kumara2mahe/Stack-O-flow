@@ -92,4 +92,12 @@
     .user-info .since .text {
         font-size: 0.6875rem;
     }
+
+    .profile-header .edit-btn-container .edit-btn {
+        background-color: var(--white);
+    }
+
+    .profile-header .edit-btn-container .edit-btn .btn-text {
+        display: none;
+    }
 }

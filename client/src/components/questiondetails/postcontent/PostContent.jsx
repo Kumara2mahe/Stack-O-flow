@@ -65,7 +65,7 @@ const PostContent = ({ post, type, qAuthorUid }) => {
                     }
                 </div>
                 <div className={!isQuestion && post?.by.uUid !== qAuthorUid ? "post-author" : "post-author user-author"}>
-                    <time className="post-time">{isQuestion ? "asked" : "answered"} {moment(Number(post?.on)).fromNow()}</time>
+                    <time className="post-time">{isQuestion ? "asked" : "answered"} {moment(post?.on).fromNow()}</time>
                     <Link to={`/users/${post?.by.uUid}`} className="link author-info">
                         <Avatar gradientBg={post?.by.avatar} fontSize="1em" fontWeight="600" padV="1rem" padH="1rem" borderRadius="0.2em" cursor="pointer">{post?.by.name}</Avatar>
                         <span className="link">{post?.by.name}</span>
