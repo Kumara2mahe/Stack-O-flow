@@ -43,21 +43,18 @@
 
 @media (max-width: 1264px) {
     #user-contents #all-users-list {
-        display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 980px) {
     #user-contents #all-users-list {
-        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 400px) {
     #user-contents #all-users-list {
-        display: grid;
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 }

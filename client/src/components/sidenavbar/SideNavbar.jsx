@@ -14,13 +14,14 @@ const SideNavbar = () => {
                         <NavLink to="/questions" className="nav-link ques-link" activeclassname="active">
                             <img src={globe} alt="glob" />Questions</NavLink>
                         <NavLink to="/tags" className="nav-link" activeclassname="active">Tags</NavLink>
-                        <NavLink to="/users" className="nav-link" activeclassname="active">Users</NavLink>
+                        <NavLink to="/users" end className="nav-link" activeclassname="active">Users</NavLink>
                     </div>
                 </div>
                 <div className="category">
                     <p className="title">Developers</p>
                     <div className="features">
                         <NavLink to="/pricing" className="nav-link" activeclassname="active">Pricing</NavLink>
+                        <NavLink to={`/users/${process.env.REACT_APP_CLIENT_OWNER_ID}`} className="nav-link" activeclassname="active">Owner</NavLink>
                     </div>
                 </div>
             </div>
