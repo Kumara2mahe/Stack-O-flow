@@ -8,6 +8,7 @@ import { toggleSpinnerAnim } from "../../../../utils"
 import { createBillingPortalSession } from "../../../../actions/pricing"
 import { handleCatchedError } from "../../../pricing/utils"
 import { getUser } from "../../../../actions/user"
+import { renderLinksInContent } from "../../../../components/questiondetails/postcontent/utils"
 import "./profilebody.css"
 
 const ProfileBody = ({ user }) => {
@@ -32,6 +33,9 @@ const ProfileBody = ({ user }) => {
     }
     useEffect(() => {
         const aboutContent = document.querySelector("#user-about .content")
+        if (aboutContent === null) {
+            return
+        }
         const aboutHeight = window.parseFloat(window.getComputedStyle(aboutContent).height)
         if (aboutHeight > 320) {
             aboutContent.classList.add("truncate-overflow")
@@ -55,7 +59,16 @@ const ProfileBody = ({ user }) => {
                 </div>
                 <div id="user-about" className="child-container">
                     <p className="title">About</p>
-                    <p className="content">{user.about !== "" ? user.about : "~ no bio ~"}</p>
+                    <div className="content">
+                        {user.about !== ""
+                            ? user.about.split("\n").map((line, index) => (
+                                <p key={index}>
+                                    <span className="content" dangerouslySetInnerHTML={{ __html: renderLinksInContent(line) }}></span>
+                                    <br />
+                                </p>
+                            ))
+                            : "~ no bio ~"}
+                    </div>
                     <div className="btn-container">
                         <button className="so-btn grey-btn read-more" onClick={removeTruncatedAbout} type="button">Read more</button>
                     </div>
@@ -82,5 +95,4 @@ const ProfileBody = ({ user }) => {
 const removeTruncatedAbout = () => {
     document.querySelector("#user-about .content")?.classList.remove("truncate-overflow")
 }
-
 export default ProfileBody

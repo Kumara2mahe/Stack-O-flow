@@ -88,7 +88,7 @@ export const updateProfile = async (req, res) => {
             return res.status(404).json({ message: "User doesn't exists" })
         }
         const profile = await users.findByIdAndUpdate(_id, {
-            $set: { name, about, tags }
+            $set: { name, about: about.trim(), tags }
         }, { new: true })
         res.status(200).json(profile)
     }

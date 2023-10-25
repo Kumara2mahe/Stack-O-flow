@@ -1,3 +1,4 @@
+import { renderLinksInContent } from "./utils"
 
 const RenderBodyContent = ({ contents }) => {
     const newLineSegments = contents?.split("\n")
@@ -14,7 +15,7 @@ const RenderBodyContent = ({ contents }) => {
                         ))
                     }
                 </p>
-                : <p key={index}>{line}</p>
+                : line && <p key={index} dangerouslySetInnerHTML={{ __html: renderLinksInContent(line) }}></p>
         ))
     )
 }

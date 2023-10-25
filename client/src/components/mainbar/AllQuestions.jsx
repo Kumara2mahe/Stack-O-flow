@@ -4,6 +4,7 @@ import moment from "moment"
 import Tags from "../tags/Tags"
 import Avatar from "../avatar/Avatar"
 import { pluralise } from "../../utils"
+import { sterlizeContentAsNormalString } from "../questiondetails/postcontent/utils"
 
 const AllQuestions = ({ questions }) => {
     return (
@@ -18,7 +19,7 @@ const AllQuestions = ({ questions }) => {
                         <h3 className="post-title word-break">
                             <Link to={`/questions/${ques._id}`} className="link word-break">{ques.title}</Link>
                         </h3>
-                        <p className="post-summary word-break">{ques.body}</p>
+                        <p className="post-summary word-break">{sterlizeContentAsNormalString(ques.body)}</p>
                         <div className="post-meta">
                             <div className="post-meta-tags tags-wrapper">
                                 <Tags tagList={ques.tags} />

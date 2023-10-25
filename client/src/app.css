@@ -228,6 +228,14 @@ form #aboutMe {
 
 .link {
     color: var(--french-blue);
+    overflow-wrap: anywhere;
+}
+
+@-moz-document url-prefix() {
+    .link {
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
 }
 
 .link:hover,
