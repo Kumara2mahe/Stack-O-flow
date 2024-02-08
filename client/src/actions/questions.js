@@ -1,9 +1,10 @@
 import * as api from "../api"
+import { FETCH_QUESTIONS, POST_QUESTION } from "./types"
 
 export const askQuestion = (questionData) => async (dispatch) => {
     try {
         await api.postQuestion(questionData)
-        await dispatch({ type: "POST_QUESTION" })
+        await dispatch({ type: POST_QUESTION })
     } catch (error) {
         throw error
     }
@@ -12,7 +13,7 @@ export const askQuestion = (questionData) => async (dispatch) => {
 export const getAllQuestions = (sortByNew = false) => async (dispatch) => {
     try {
         const { data } = sortByNew ? await api.getAllNewQuestions() : await api.getAllTopQuestions()
-        await dispatch({ type: "FETCH_QUESTIONS", payload: data })
+        await dispatch({ type: FETCH_QUESTIONS, payload: data })
     }
     catch (error) {
         console.log(error.message)

@@ -6,6 +6,7 @@ import decode from "jwt-decode"
 import BotHeader from "./botcomponents/botheader/BotHeader"
 import BotFooter from "./botcomponents/botfooter/BotFooter"
 import BotChatArea from "./botcomponents/botchatarea/BotChatArea"
+import { CLEAR_MESSAGES, EXPIRE_OTP_VERIFICATION, MAIL_SENT_RESET } from "../../actions/types"
 import { otpVerification } from "../../actions/otpVerification"
 import "./chatterbot.css"
 
@@ -20,10 +21,10 @@ const ChatterBot = () => {
     const dispatch = useDispatch()
 
     const expireOtp = () => {
-        dispatch({ type: "EXPIRE_OTP_VERIFICATION" })
-        dispatch({ type: "MAIL_SENT_RESET" })
+        dispatch({ type: EXPIRE_OTP_VERIFICATION })
+        dispatch({ type: MAIL_SENT_RESET })
         dispatch(otpVerification())
-        dispatch({ type: "CLEAR_MESSAGES" })
+        dispatch({ type: CLEAR_MESSAGES })
     }
     useEffect(() => {
         const token = VERIFIED_USER?.token

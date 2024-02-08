@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux"
+
+import { CLEAR_MESSAGES } from "../../../../actions/types"
 import "./botheader.css"
 
 const BotHeader = ({ setOpenBot, tabIndex }) => {
     const dispatch = useDispatch()
     const clearAndCloseBot = () => {
         setOpenBot(false)
-        dispatch({ type: "CLEAR_MESSAGES" })
+        dispatch({ type: CLEAR_MESSAGES })
     }
     return (
         <div id="bot-header">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 
+import { CLEAR_AUTH_MESSAGES, CLEAR_MAIL_MESSAGES } from "../../../../actions/types"
 import { parseUserMessage, getBotReply } from "../../../../actions/messages"
 import { sendOtp, verifyOtp } from "../../../../actions/otpVerification"
 import { parseErrorResText } from "../../../../utils/form"
@@ -34,7 +35,7 @@ const BotFooter = ({ tabIndex }) => {
             const clearMessages = () => {
                 e.target.parentElement.classList.remove("processing")
                 submitBtn.disabled = false
-                dispatch({ type: "CLEAR_MAIL_MESSAGES" })
+                dispatch({ type: CLEAR_MAIL_MESSAGES })
             }
             const submitBtn = e.target.querySelector("#msg-submit-btn")
             submitBtn.disabled = true
@@ -65,7 +66,7 @@ const BotFooter = ({ tabIndex }) => {
             dispatch(botAction)
                 .then((data) => {
                     if (data?.verified) {
-                        dispatch({ type: "CLEAR_AUTH_MESSAGES" })
+                        dispatch({ type: CLEAR_AUTH_MESSAGES })
                     }
                 })
                 .catch((error) => {

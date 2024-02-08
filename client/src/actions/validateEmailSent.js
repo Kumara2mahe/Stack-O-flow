@@ -1,7 +1,8 @@
+import { MAIL_NOT_RECEIVED, MAIL_SENT_VERIFIED } from "./types"
 
 export const receivedEmail = () => async (dispatch) => {
     try {
-        await dispatch({ type: "MAIL_SENT_VERIFIED" })
+        await dispatch({ type: MAIL_SENT_VERIFIED })
     } catch (error) {
         throw error
     }
@@ -9,7 +10,7 @@ export const receivedEmail = () => async (dispatch) => {
 
 export const notReceivedEmail = (email) => async (dispatch) => {
     try {
-        await dispatch({ type: "MAIL_NOT_RECEIVED", payload: email })
+        await dispatch({ type: MAIL_NOT_RECEIVED, payload: email })
     } catch (error) {
         throw error
     }

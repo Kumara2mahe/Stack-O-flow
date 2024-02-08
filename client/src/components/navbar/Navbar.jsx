@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 import decode from "jwt-decode"
 
+import { LOGOUT, EXPIRE_OTP_VERIFICATION, MAIL_SENT_RESET } from "../../actions/types"
 import { setUser } from "../../actions/currentUser"
 import Avatar from "../avatar/Avatar"
 import { toggleSideNavbar, toggleSearchBar, smallScreenPx } from "./utils"
@@ -32,9 +33,9 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const logoutUser = () => {
-        dispatch({ type: "LOGOUT" })
-        dispatch({ type: "EXPIRE_OTP_VERIFICATION" })
-        dispatch({ type: "MAIL_SENT_RESET" })
+        dispatch({ type: LOGOUT })
+        dispatch({ type: EXPIRE_OTP_VERIFICATION })
+        dispatch({ type: MAIL_SENT_RESET })
         dispatch(setUser())
         navigate(location.pathname)
     }
