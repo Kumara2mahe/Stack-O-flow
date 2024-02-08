@@ -6,11 +6,13 @@ import { parseErrorResText } from "../../../../utils/form"
 import checkIconGreen from "../../../../assets/check-green.png"
 import checkIconOrange from "../../../../assets/check-orange.png"
 import Message from "../Message"
+import EmailSentValidation from "./EmailSentValidation"
 import "./authentication.css"
 
 const Authentication = () => {
     const USER = useSelector(state => state.currentUserReducer)
     const VERIFIED_USER = useSelector(state => state.otpVerificationReducer)
+    const VERIFY_MAIL_SENT = useSelector(state => state.verifyMailSentReducer)
     const AUTH_MESSAGES = useSelector(state => state.authMessagesReducer)
 
     const dispatch = useDispatch()
@@ -47,16 +49,24 @@ const Authentication = () => {
                     <div className="greet">Welcome <span className="user-name">{USER.result.name}</span>
                         &nbsp;<img width="16" src={VERIFIED_USER ? checkIconGreen : checkIconOrange} alt="check-mark" />
                     </div>
-                    {!VERIFIED_USER?.verified && <div className="info-hint">Before answering your question I need to verfiy it's really you.</div>}
+                    {!VERIFIED_USER?.verified && (
+                        VERIFY_MAIL_SENT && VERIFY_MAIL_SENT.received === false && VERIFY_MAIL_SENT.confirmation
+                            ? <div className="info-hint">
+                                Looks like <span className="like-a-link nolink">{VERIFY_MAIL_SENT.email ? VERIFY_MAIL_SENT.email : USER.result.email}</span> couldn't be found, or is unable to receive mail.
+                            </div>
+                            : <div className="info-hint">Before answering your question I need to verfiy it's really you.</div>
+                    )}
                 </div>
                 {
                     !VERIFIED_USER?.verified && (
                         VERIFIED_USER?.attempts > 0
-                            ? AUTH_MESSAGES.map((msg, index) => (
-                                <Message key={`${msg.from}-ch${index}`} uid={`${msg.from}-ch${index}`} content={msg.content} from={msg.from} />
-                            ))
+                            ? VERIFY_MAIL_SENT.received
+                                ? AUTH_MESSAGES.map((msg, index) => (
+                                    <Message key={`${msg.from}-ch${index}`} uid={`${msg.from}-ch${index}`} content={msg.content} from={msg.from} />
+                                ))
+                                : <EmailSentValidation />
                             : <div className="verification-choice">
-                                <button id="send-otp-btn" className="so-btn" onClick={handleSendOtp} type="button">Send Otp</button>
+                                <button className="so-btn choice-btn" onClick={handleSendOtp} type="button">Send Otp</button>
                             </div>
                     )
                 }

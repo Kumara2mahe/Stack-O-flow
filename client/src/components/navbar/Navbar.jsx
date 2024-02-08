@@ -33,6 +33,8 @@ const Navbar = () => {
     const navigate = useNavigate()
     const logoutUser = () => {
         dispatch({ type: "LOGOUT" })
+        dispatch({ type: "EXPIRE_OTP_VERIFICATION" })
+        dispatch({ type: "MAIL_SENT_RESET" })
         dispatch(setUser())
         navigate(location.pathname)
     }

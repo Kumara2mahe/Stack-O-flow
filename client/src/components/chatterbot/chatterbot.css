@@ -47,3 +47,13 @@
         z-index: 10;
     }
 }
+
+#chatter-bot .like-a-link {
+    color: var(--french-blue);
+    cursor: default;
+}
+
+#chatter-bot .like-a-link:not(.nolink):hover {
+    color: var(--dodger-blue);
+    cursor: pointer;
+}

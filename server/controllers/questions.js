@@ -24,7 +24,6 @@ export const askQuestion = async (req, res) => {
         }
         res.status(200).json({ message: "Question Posted Successfully" })
     } catch (error) {
-        console.log(error.message)
         res.status(409).json({ message: "Something went wrong, while posting question." })
     }
 }

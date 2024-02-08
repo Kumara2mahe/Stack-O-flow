@@ -3,6 +3,7 @@ import * as api from "../api"
 export const sendOtp = (email, name) => async (dispatch) => {
     try {
         const { data } = await api.sendOtp({ email, name, sitelink: process.env.REACT_APP_CLIENT_URL })
+        await dispatch({ type: "MAIL_SENT", payload: email })
         await dispatch({ type: "OTP_VERIFICATION", payload: data })
         await dispatch(otpVerification())
     } catch (error) {

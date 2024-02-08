@@ -1,9 +1,19 @@
 import * as api from "../api"
 
-export const parseUserMessage = (message, toVerify = false) => async (dispatch) => {
+export const parseUserMessage = (message, type = "") => async (dispatch) => {
     try {
         const data = { from: "user", content: message }
-        dispatch({ type: toVerify ? "FETCH_AUTH_MESSAGES" : "FETCH_MESSAGES", payload: data })
+        switch (type) {
+            case "auth":
+                dispatch({ type: "FETCH_AUTH_MESSAGES", payload: data })
+                break
+            case "mail":
+                dispatch({ type: "FETCH_MAIL_MESSAGES", payload: data })
+                break
+            default:
+                dispatch({ type: "FETCH_MESSAGES", payload: data })
+                break
+        }
     } catch (error) {
         console.log(error.message)
     }

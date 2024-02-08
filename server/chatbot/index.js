@@ -24,7 +24,7 @@ export const sendOtpAsMail = async (to, data) => {
                 console.log(`Email sent [${new Date().toJSON()}]: ${info.messageId}`)
             })
             .catch(() => {
-                throw new Error("Bad Request: 400").message = "Couldn't sent OTP to registered Email"
+                throw new Error("Bad Request: 400").message = "Couldn't sent OTP to your Email"
             })
     }
     catch (error) {

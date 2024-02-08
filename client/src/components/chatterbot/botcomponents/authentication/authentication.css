@@ -64,21 +64,26 @@
     padding: 0 1rem;
 }
 
-.verification-choice #send-otp-btn {
+.verification-choice .choice-btn {
     background-color: transparent;
     color: var(--orange-wheel);
+    min-width: 50px;
     padding: 0.5em;
     border: 1px solid var(--orange-wheel);
     border-radius: 1rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 }
 
-.verification-choice #send-otp-btn:hover,
-.verification-choice #send-otp-btn:focus {
+.verification-choice .choice-btn:not(:first-of-type) {
+    margin-left: 4px;
+}
+
+.verification-choice .choice-btn:hover,
+.verification-choice .choice-btn:focus {
     background-color: var(--white);
     cursor: pointer;
 }
 
-.verification-choice #send-otp-btn:focus {
+.verification-choice .choice-btn:focus {
     box-shadow: 0 0 0 4px rgba(244, 130, 37, 0.15);
 }

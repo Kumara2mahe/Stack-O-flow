@@ -102,6 +102,7 @@
     transform: scale(0);
     transform-origin: bottom left;
     overflow: hidden;
+    word-wrap: anywhere;
     position: relative;
 }
 

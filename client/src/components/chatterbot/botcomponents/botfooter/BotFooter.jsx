@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 
 import { parseUserMessage, getBotReply } from "../../../../actions/messages"
-import { verifyOtp } from "../../../../actions/otpVerification"
+import { sendOtp, verifyOtp } from "../../../../actions/otpVerification"
 import { parseErrorResText } from "../../../../utils/form"
 import sendIcon from "../../../../assets/send.svg"
 import "./botfooter.css"
@@ -10,10 +10,11 @@ import "./botfooter.css"
 const BotFooter = ({ tabIndex }) => {
     const USER = useSelector(state => state.currentUserReducer)
     const VERIFIED_USER = useSelector(state => state.otpVerificationReducer)
+    const VERIFY_MAIL_SENT = useSelector(state => state.verifyMailSentReducer)
     const [disableInput, setDisableInput] = useState(true)
     const [userMessage, setUserMessage] = useState("")
 
-    const condition = tabIndex === 0 && USER !== null && VERIFIED_USER !== null
+    const condition = tabIndex === 0 && USER !== null && VERIFIED_USER !== null && (VERIFY_MAIL_SENT.received || VERIFY_MAIL_SENT.confirmation)
     useEffect(() => {
         if (condition) {
             setTimeout(() => {
@@ -30,16 +31,37 @@ const BotFooter = ({ tabIndex }) => {
             showError(e.target.parentElement, "auth-error")
         }
         else if (userMessage !== "") {
+            const clearMessages = () => {
+                e.target.parentElement.classList.remove("processing")
+                submitBtn.disabled = false
+                dispatch({ type: "CLEAR_MAIL_MESSAGES" })
+            }
             const submitBtn = e.target.querySelector("#msg-submit-btn")
             submitBtn.disabled = true
             e.target.parentElement.classList.add("processing")
 
             // User input action
-            const userAction = !VERIFIED_USER?.verified ? parseUserMessage(userMessage, true) : parseUserMessage(userMessage)
+            const replyForAlternateEmail = VERIFY_MAIL_SENT && VERIFY_MAIL_SENT.received === false && VERIFY_MAIL_SENT.confirmation
+            const userAction = !VERIFIED_USER?.verified
+                ? replyForAlternateEmail
+                    ? parseUserMessage(userMessage, "mail")
+                    : parseUserMessage(userMessage, "auth")
+                : parseUserMessage(userMessage)
             dispatch(userAction)
 
+            const alternateEmail = userMessage.trim()
+            if (!VERIFIED_USER?.verified && replyForAlternateEmail && alternateEmail === USER?.result?.email) {
+                setUserMessage("")
+                clearMessages()
+                return showError(e.target, "empty", "Oops! not the same email.")
+            }
+
             // Bot reply action
-            const botAction = !VERIFIED_USER?.verified ? verifyOtp(VERIFIED_USER, userMessage) : getBotReply(userMessage)
+            const botAction = !VERIFIED_USER?.verified
+                ? replyForAlternateEmail
+                    ? sendOtp(userMessage.trim(), USER?.result?.name) // Validate email & send otp
+                    : verifyOtp(VERIFIED_USER, userMessage)
+                : getBotReply(userMessage)
             dispatch(botAction)
                 .then((data) => {
                     if (data?.verified) {
@@ -47,14 +69,20 @@ const BotFooter = ({ tabIndex }) => {
                     }
                 })
                 .catch((error) => {
-                    console.log(error)
-                    let errMsg = parseErrorResText(error, error.message)
+                    let errMsg = error.message
+                    switch (error?.response?.request?.status) {
+                        case 401:
+                            errMsg = "Logged in session expired! Try to login again"
+                            break
+                        case 400:
+                            errMsg = parseErrorResText(error, error.message)
+                            break
+                        default:
+                            break
+                    }
                     showError(e.target, "empty", errMsg)
                 })
-                .finally(() => {
-                    e.target.parentElement.classList.remove("processing")
-                    submitBtn.disabled = false
-                })
+                .finally(clearMessages)
         }
         else showError(e.target, "empty")
         setUserMessage("")

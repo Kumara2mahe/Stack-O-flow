@@ -1,4 +1,6 @@
-const otpVerificationReducer = (state = null, action) => {
+const initialState = null
+
+const otpVerificationReducer = (state = initialState, action) => {
     switch (action.type) {
         case "OTP_VERIFICATION":
             window.localStorage.setItem("sof-otp-verification", JSON.stringify({ ...action?.payload }))
@@ -7,7 +9,7 @@ const otpVerificationReducer = (state = null, action) => {
             return action.payload
         case "EXPIRE_OTP_VERIFICATION":
             window.localStorage.removeItem("sof-otp-verification")
-            return state
+            return initialState
         default:
             return state
     }

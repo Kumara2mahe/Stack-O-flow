@@ -16,19 +16,19 @@ const ChatterBot = () => {
         setOpenBot(false)
     }, [location.pathname])
 
-    const USER = useSelector(state => state.currentUserReducer)
     const VERIFIED_USER = useSelector(state => state.otpVerificationReducer)
     const dispatch = useDispatch()
 
     const expireOtp = () => {
         dispatch({ type: "EXPIRE_OTP_VERIFICATION" })
+        dispatch({ type: "MAIL_SENT_RESET" })
         dispatch(otpVerification())
         dispatch({ type: "CLEAR_MESSAGES" })
     }
     useEffect(() => {
         const token = VERIFIED_USER?.token
         const isTokenExpired = token && (decode(token).exp * 1000 < new Date().getTime())
-        if (isTokenExpired || (!VERIFIED_USER?.verified && VERIFIED_USER?.attempts === 0) || USER?.result?.email !== VERIFIED_USER?.email) {
+        if (isTokenExpired || (!VERIFIED_USER?.verified && VERIFIED_USER?.attempts === 0)) {
             expireOtp()
         }
         // eslint-disable-next-line
