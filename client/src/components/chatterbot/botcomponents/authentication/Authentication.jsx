@@ -21,7 +21,7 @@ const Authentication = () => {
         const botFooter = document.querySelector("#bot-footer")
         if (email) {
             botFooter.parentElement.classList.add("processing")
-            dispatch(sendOtp(email, USER?.result?.name))
+            dispatch(sendOtp(USER?.result?._id, email, USER?.result?.name))
                 .catch((error) => {
                     let errMsg = error.message
                     switch (error?.response?.request?.status) {

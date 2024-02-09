@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 
 const botUserSchema = {
+    uUid: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     email: { type: String, required: true },
     otp: { type: String, required: true },
     expireOn: { type: Number, required: true },

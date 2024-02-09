@@ -4,12 +4,12 @@ import { sendOtpAsMail } from "../../chatbot/index.js"
 import botusers from "../../models/botuser.js"
 
 export const sendOtp = async (req, res) => {
-    const { email, name: username, sitelink } = req.body
+    const { uUid, email, name: username, sitelink } = req.body
     try {
         const otp = generateOTP()
         await sendOtpAsMail(email, { otp, username, sitelink })
             .then(async () => {
-                const verifyDetails = await createVerificationToken(email, otp)
+                const verifyDetails = await createVerificationToken(uUid, email, otp)
                 res.status(200).json(verifyDetails)
             })
             .catch((error) => {
@@ -30,28 +30,30 @@ const generateOTP = (length = 6) => {
     return otp
 }
 
-const createVerificationToken = async (email, otp) => {
+const createVerificationToken = async (uUid, email, otp) => {
     const now = Date.now()
     const expireOn = now + (1000 * validFor)
     const token = generateToken(email)
     const allBotUsers = await botusers.find()
-    const otherBotUsers = allBotUsers.filter(cred => cred.email !== email)
+    const otherBotUsers = allBotUsers.filter(cred => cred.uUid.toString() !== uUid)
 
     // Dumping expired data
     otherBotUsers.forEach(cred => (cred.expireOn < now || cred.attempts < 1 || cred.verified) && cred.delete())
     if (otherBotUsers.length !== allBotUsers.length) {
-        const currentBotUser = await botusers.findOneAndUpdate({ email }, {
-            $set: { otp, expireOn, attempts: 3, verified: false }
+        const currentBotUser = await botusers.findOneAndUpdate({ uUid }, {
+            $set: { email, otp, expireOn, attempts: 3, verified: false }
         }, { new: true })
         return {
+            userId: uUid,
             verified: currentBotUser.verified,
             attempts: currentBotUser.attempts,
             email, token
         }
     }
     else {
-        const newCred = await botusers.create({ email, otp, expireOn })
+        const newCred = await botusers.create({ uUid, email, otp, expireOn })
         return {
+            userId: uUid,
             verified: newCred.verified,
             attempts: newCred.attempts,
             email, token
@@ -60,9 +62,9 @@ const createVerificationToken = async (email, otp) => {
 }
 
 export const verifyOtp = async (req, res) => {
-    const { email, userotp } = req.body
+    const { uUid, email, userotp } = req.body
     try {
-        const existingBotUser = await botusers.findOne({ email })
+        const existingBotUser = await botusers.findOne({ uUid, email })
         if (!existingBotUser) {
             return res.status(404).json({ message: "Otp sent expired, try again!" })
         }
@@ -71,7 +73,7 @@ export const verifyOtp = async (req, res) => {
             return res.status(401).json({ message: "Otp sent expired or invalid, try to generate newone" })
         }
         else if (existingBotUser.otp !== userotp) {
-            const updatedBotUser = await botusers.findOneAndUpdate({ email }, {
+            const updatedBotUser = await botusers.findOneAndUpdate({ uUid, email }, {
                 $set: { attempts: existingBotUser.attempts - 1 }
             }, { new: true })
             if (updatedBotUser.attempts > 0) {
@@ -85,11 +87,11 @@ export const verifyOtp = async (req, res) => {
                 message: "Otp doesn't match, all attempts failed."
             })
         }
-        const verifiedBotUser = await botusers.findOneAndUpdate({ email }, {
+        const verifiedBotUser = await botusers.findOneAndUpdate({ uUid, email }, {
             $set: { verified: true }
         }, { new: true })
         res.status(200).json({
-            result: { verified: verifiedBotUser.verified, token: generateToken(email), email },
+            result: { userId: uUid, verified: verifiedBotUser.verified, token: generateToken(email), email },
             message: `Otp matched and verified!`
         })
     }

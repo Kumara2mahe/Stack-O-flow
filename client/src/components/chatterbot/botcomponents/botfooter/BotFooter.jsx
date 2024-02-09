@@ -60,7 +60,7 @@ const BotFooter = ({ tabIndex }) => {
             // Bot reply action
             const botAction = !VERIFIED_USER?.verified
                 ? replyForAlternateEmail
-                    ? sendOtp(userMessage.trim(), USER?.result?.name) // Validate email & send otp
+                    ? sendOtp(USER?.result?._id, userMessage.trim(), USER?.result?.name) // Validate email & send otp
                     : verifyOtp(VERIFIED_USER, userMessage)
                 : getBotReply(userMessage)
             dispatch(botAction)
@@ -72,6 +72,9 @@ const BotFooter = ({ tabIndex }) => {
                 .catch((error) => {
                     let errMsg = error.message
                     switch (error?.response?.request?.status) {
+                        case 404:
+                            errMsg = parseErrorResText(error, error.message)
+                            break
                         case 401:
                             errMsg = "Logged in session expired! Try to login again"
                             break

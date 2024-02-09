@@ -1,9 +1,9 @@
 import * as api from "../api"
 import * as actionType from "./types"
 
-export const sendOtp = (email, name) => async (dispatch) => {
+export const sendOtp = (uUid, email, name) => async (dispatch) => {
     try {
-        const { data } = await api.sendOtp({ email, name, sitelink: process.env.REACT_APP_CLIENT_URL })
+        const { data } = await api.sendOtp({ uUid, email, name, sitelink: process.env.REACT_APP_CLIENT_URL })
         await dispatch({ type: actionType.MAIL_SENT, payload: email })
         await dispatch({ type: actionType.OTP_VERIFICATION, payload: data })
         await dispatch(otpVerification())
@@ -22,7 +22,7 @@ export const otpVerification = () => {
 
 export const verifyOtp = (verificationData, userotp) => async (dispatch) => {
     try {
-        const { data } = await api.verifyOtp({ email: verificationData.email, userotp })
+        const { data } = await api.verifyOtp({ uUid: verificationData.userId, email: verificationData.email, userotp })
         await dispatch({ type: actionType.FETCH_AUTH_MESSAGES, payload: { from: "bot", content: data.message } })
         let updatedData = { ...verificationData }
         if (data.result.verified) {
