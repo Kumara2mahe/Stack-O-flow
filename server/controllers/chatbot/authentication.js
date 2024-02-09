@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken"
 
 import { sendOtpAsMail } from "../../chatbot/index.js"
 import botusers from "../../models/botuser.js"
+import VerifiedUser from "../../models/verifiedUser.js"
 
 export const sendOtp = async (req, res) => {
     const { uUid, email, name: username, sitelink } = req.body
@@ -36,6 +37,20 @@ const createVerificationToken = async (uUid, email, otp) => {
     const token = generateToken(email)
     const allBotUsers = await botusers.find()
     const otherBotUsers = allBotUsers.filter(cred => cred.uUid.toString() !== uUid)
+
+    // Add botuser to verifiedUser models to track later
+    const verifiedUser = await VerifiedUser.findOne({ uUid })
+    if (!verifiedUser) {
+        VerifiedUser.create({ uUid, login: { email } })
+    }
+    else if (verifiedUser.login.email !== email && (
+        verifiedUser.alternates.length === 0 || verifiedUser.alternates.filter(user => user.email !== email).length)) {
+        await verifiedUser.updateOne({
+            $push: {
+                alternates: { email }
+            }
+        })
+    }
 
     // Dumping expired data
     otherBotUsers.forEach(cred => (cred.expireOn < now || cred.attempts < 1 || cred.verified) && cred.delete())
@@ -90,6 +105,22 @@ export const verifyOtp = async (req, res) => {
         const verifiedBotUser = await botusers.findOneAndUpdate({ uUid, email }, {
             $set: { verified: true }
         }, { new: true })
+
+        // Update botuser's email as verified
+        const verifiedUser = await VerifiedUser.findOne({ uUid })
+        if (verifiedUser) {
+            if (verifiedUser.login.email === email && verifiedUser.login.verified === false) {
+                await verifiedUser.updateOne({ $set: { "login.verified": true } })
+            }
+            else {
+                const [_vUser] = verifiedUser.alternates.filter(user => user.email === email && user.verified === false)
+                _vUser && await VerifiedUser.updateOne({ uUid, "alternates.email": email }, {
+                    $set: {
+                        "alternates.$.verified": true
+                    }
+                })
+            }
+        }
         res.status(200).json({
             result: { userId: uUid, verified: verifiedBotUser.verified, token: generateToken(email), email },
             message: `Otp matched and verified!`
